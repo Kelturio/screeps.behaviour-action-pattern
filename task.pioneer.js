@@ -18,11 +18,11 @@ mod.register = () => {
 };
 mod.handleRoomDied = room => {
     // try to spawn a worker
-    let pioneer = false;
+    let pioneer = true;
     if( room.energyAvailable > 199 ) {
         // flush high queue
         room.spawnQueueHigh.splice(0, room.spawnQueueHigh.length);
-        pioneer = null != Task.spawn(
+        pioneer = !Task.spawn(
             Task.pioneer.creep.worker, // creepDefinition
             { // destiny
                 task: 'pioneer', // taskName
